@@ -1,14 +1,9 @@
-# from django.urls import path
-# from .views import google_auth, google_callback, register, login
-
-# urlpatterns = [
-#     path("google/", google_auth, name="google-auth"),
-#     path("google/callback/", google_callback, name="google-callback"),
-
-# ]
 from django.urls import path
-from .views import GoogleAuthView
-
+from .views import GoogleLoginRedirect, GoogleAuthCallback, LogoutView,AuthenticateUserView
+ 
 urlpatterns = [
-    path('auth/google/', GoogleAuthView.as_view(), name='google-auth'),
+    path("google/login/", GoogleLoginRedirect.as_view(), name="google_login"),
+    path("google/callback/", GoogleAuthCallback.as_view(), name="google_callback"),
+    path("logout/", LogoutView.as_view(), name="logout"),
+    path("authenticate/", AuthenticateUserView.as_view(), name="authenticate_user"),
 ]
